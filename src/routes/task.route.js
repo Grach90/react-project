@@ -1,16 +1,15 @@
 const express = require('express'),
-    validator = require('../middlewares/validator.middleware'),
-    auth = require('../middlewares/auth.middleware'),
-    taskRouter = express.Router(),
-    taskController = require('../controllers/task.controller');
-
+  validator = require('../middlewares/validator.middleware'),
+  auth = require('../middlewares/auth.middleware'),
+  taskRouter = express.Router(),
+  taskController = require('../controllers/task.controller');
+  
 /**
  * Аll routes start with '/task'
  **/
-//todo please fix the auth middleware later
 
 // create task
-taskRouter.post('/', /*auth,*/ validator('task-create'), taskController.create);
+taskRouter.post('/', auth, validator('task-create'), taskController.create);
 
 // get one task
 taskRouter.get('/:id', auth, taskController.getSingle);
